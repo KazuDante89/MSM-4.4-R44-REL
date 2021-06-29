@@ -8388,10 +8388,9 @@ static void update_blocked_averages(int cpu)
 					   true))
 			update_tg_load_avg(cfs_rq, 0);
 
-		/* Propagate pending load changes to the parent, if any: */
-		se = cfs_rq->tg->se[cpu];
-		if (se && !skip_blocked_update(se))
-			update_load_avg(se, 0);
+		/* Propagate pending load changes to the parent */
+		if (cfs_rq->tg->se[cpu])
+			update_load_avg(cfs_rq->tg->se[cpu], 0);
 	}
 
 	update_rt_rq_load_avg(rq_clock_task(rq), cpu, &rq->rt, 0);
