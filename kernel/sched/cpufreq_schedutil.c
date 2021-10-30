@@ -29,7 +29,7 @@ unsigned long boosted_cpu_util(int cpu);
 #define cpufreq_disable_fast_switch(x)
 #define UP_RATE_LIMIT_US		(500)
 #define DOWN_RATE_LIMIT_US	(20000)
-#define SUGOV_KTHREAD_PRIORITY	60
+#define SUGOV_KTHREAD_PRIORITY	40
 
 struct sugov_tunables {
 	struct gov_attr_set attr_set;
