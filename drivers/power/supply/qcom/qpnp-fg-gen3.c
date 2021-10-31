@@ -830,7 +830,7 @@ static int fg_get_msoc_raw(struct fg_chip *chip, int *val)
 
 #define FULL_CAPACITY	100
 #define FULL_SOC_RAW	245
-if defined(CONFIG_KERNEL_CUSTOM_D2S) || defined(CONFIG_KERNEL_CUSTOM_F7A)
+#if defined(CONFIG_KERNEL_CUSTOM_D2S) || defined(CONFIG_KERNEL_CUSTOM_F7A)
 #define FULL_SOC_REPORT_THR 240
 #endif
 
@@ -863,8 +863,9 @@ static int fg_get_msoc(struct fg_chip *chip, int *msoc)
               *msoc = DIV_ROUND_CLOSEST((*msoc - 1) * (FULL_CAPACITY - 2),
                               FULL_SOC_RAW - 2) + 1;
 
-				if (*msoc > FULL_CAPACITY)
-					  *msoc = FULL_CAPACITY;
+        if (*msoc > FULL_CAPACITY)
+		        *msoc = FULL_CAPACITY;
+
       }
 #else
 	/*
@@ -882,8 +883,8 @@ static int fg_get_msoc(struct fg_chip *chip, int *msoc)
 				FULL_SOC_RAW - 2) + 1;
 #endif
 
-    if (*msoc > FULL_CAPACITY)
-        *msoc = FULL_CAPACITY;
+       if (*msoc > FULL_CAPACITY)
+           *msoc = FULL_CAPACITY;
 
 	return 0;
 }
