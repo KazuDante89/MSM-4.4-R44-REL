@@ -2296,11 +2296,11 @@ static int cpufreq_set_policy(struct cpufreq_policy *policy,
 	if (ret)
 		return ret;
 
-	//if (cpumask_test_cpu(new_policy->cpu, cpu_lp_mask))
-		  //cpufreq_verify_within_limits(new_policy, 1843200, new_policy->max);
+	if (cpumask_test_cpu(new_policy->cpu, cpu_lp_mask))
+		  cpufreq_verify_within_limits(new_policy, 1843200, new_policy->max);
 
-	//if (cpumask_test_cpu(new_policy->cpu, cpu_perf_mask))
-			//cpufreq_verify_within_limits(new_policy, 1113600, new_policy->max);
+	if (cpumask_test_cpu(new_policy->cpu, cpu_perf_mask))
+			cpufreq_verify_within_limits(new_policy, 1113600, new_policy->max);
 
 
 	/* notification of the new policy */
