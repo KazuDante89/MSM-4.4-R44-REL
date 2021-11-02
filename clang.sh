@@ -135,7 +135,7 @@ echo -e ""
 	if [ "$choice" == "4" ]; then
 		echo -e "\n#######################################################################"
         echo -e "\n(i) Cloning AnyKernel3 if folder not exist..."
-		git clone -b lavender2 https://github.com/KazuDante89/AnyKernel3-EAS.git
+		git clone -b lavender2 https://github.com/KazuDante89/AnyKernel3-EAS.git AnyKernel3
 		echo -e "\n(i) Strip and move modules to AnyKernel3..."
 
 		# thanks to @adekmaulana
