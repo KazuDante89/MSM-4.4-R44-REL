@@ -703,7 +703,7 @@ void __sock_recv_timestamp(struct msghdr *msg, struct sock *sk,
 			 SCM_TIMESTAMPING, sizeof(tss), &tss);
 
 		if (skb->len && (sk->sk_tsflags & SOF_TIMESTAMPING_OPT_STATS))
-			put_cmsg(msg, SOL_SOCKET, SCM_TIMESTAMPING_OPT_STATS,
+			put_cmsg(msg, SOL_SOCKET, SOF_TIMESTAMPING_OPT_STATS,
 				 skb->len, skb->data);
 	}
 }
