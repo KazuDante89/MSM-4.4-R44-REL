@@ -151,9 +151,10 @@
 			qcom,wf-play-rate-us = <6667>;
 			qcom,wf-brake-pattern = [03 00 00 00];
 			qcom,lra-auto-resonance-disable;
-		};
-	};
-};
+		 };
+	 };
+ };
+}; 
 
 &pm660_vadc {
 	chan@50 {
