@@ -1308,7 +1308,7 @@
 		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
 		qcom,target-dev = <&memlat_cpu0>;
 		qcom,core-dev-table =
-			< 902400 762 >,
+			< 633600 762 >,
 			< 1401600 2086 >,
 			< 1843200 3879 >;
 	};
@@ -1338,6 +1338,16 @@
 				< 2150400 3879 >,
 				< 2208000 6881 >;
 		};
+	};
+
+  devfreq_compute: qcom,devfreq-compute {
+		compatible = "qcom,arm-cpu-mon";
+		qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3>;
+		qcom,target-dev = <&mincpubw>;
+		qcom,core-dev-table =
+       < 633600 762 >,
+       < 1401600 2086 >,
+       < 1881600 3879 >;
 	};
 
 	clock_cpu: qcom,clk-cpu-660@179c0000 {
@@ -1475,11 +1485,11 @@
 
 		qcom,cpufreq-table-0 =
 			<  633600 >,
-			<  902400 >,
-			< 1113600 >,
+		/*<  902400 >,
+			< 1113600 >,*/
 			< 1401600 >,
-			< 1536000 >,
-			< 1747200 >,
+		/*< 1536000 >,
+			< 1747200 >,*/
 			< 1843200 >;
 
 		qcom,cpufreq-table-4 =
