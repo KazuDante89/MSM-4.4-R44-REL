@@ -54,7 +54,7 @@ union power_supply_propval lct_therm_india_level = {1,};
 bool lct_backlight_off;
 int LctIsInCall = 0;
 #if defined(CONFIG_KERNEL_CUSTOM_D2S)
-int LctIsInVideo = 0; 
+int LctIsInVideo = 0;
 #endif
 int LctThermal =0;
 extern int hwc_check_india;
@@ -265,8 +265,8 @@ static int smb2_parse_dt(struct smb2 *chip)
 						"qcom,batteryless-platform");
 
 	if (hwc_check_global){
-		pr_err("sunxing get global set fcc max 2.3A");
-		chg->batt_profile_fcc_ua = 2300000;
+		pr_err("sunxing get global set fcc max 2.9A");
+		chg->batt_profile_fcc_ua = 2900000;
 	}else{
 	rc = of_property_read_u32(node,
 				"qcom,fcc-max-ua", &chg->batt_profile_fcc_ua);
@@ -274,7 +274,7 @@ static int smb2_parse_dt(struct smb2 *chip)
 	if(is_poweroff_charge == true)
 	{
 		if(hwc_check_india == 1)
-			chg->batt_profile_fcc_ua = 2200000;
+			chg->batt_profile_fcc_ua = 2300000;
 		else
 			chg->batt_profile_fcc_ua = 2300000;
 	}
@@ -324,8 +324,8 @@ static int smb2_parse_dt(struct smb2 *chip)
 				&chip->dt.wipower_max_uw);
 	if (rc < 0)
 		chip->dt.wipower_max_uw = -EINVAL;
-	
-#if (defined(CONFIG_KERNEL_CUSTOM_E7S) || defined(CONFIG_KERNEL_CUSTOM_E7T))	
+
+#if (defined(CONFIG_KERNEL_CUSTOM_E7S) || defined(CONFIG_KERNEL_CUSTOM_E7T))
 	if (hwc_check_india == 1){
 #endif
 	if (of_find_property(node, "qcom,thermal-mitigation", &byte_len)) {
@@ -352,10 +352,10 @@ static int smb2_parse_dt(struct smb2 *chip)
 		if (of_find_property(node, "qcom,thermal-mitigation-china", &byte_len)) {
 			chg->thermal_mitigation = devm_kzalloc(chg->dev, byte_len,
 				GFP_KERNEL);
-		
+
 			if (chg->thermal_mitigation == NULL)
 				return -ENOMEM;
-		
+
 			chg->thermal_levels = byte_len / sizeof(u32);
 				rc = of_property_read_u32_array(node,
 						"qcom,thermal-mitigation-china",
@@ -645,7 +645,7 @@ static int smb2_init_usb_psy(struct smb2 *chip)
 {
 	struct power_supply_config usb_cfg = {};
 	struct smb_charger *chg = &chip->chg;
-  
+
 	chg->usb_psy_desc.name			= "usb";
 	chg->usb_psy_desc.type			= POWER_SUPPLY_TYPE_USB_PD;
 	chg->usb_psy_desc.properties		= smb2_usb_props;
@@ -2477,16 +2477,16 @@ static struct device_attribute attrs2[] = {
 			lct_thermal_video_status_show, lct_thermal_video_status_store),
 #endif
 };
-	
+
 static void thermal_fb_notifier_resume_work(struct work_struct *work)
 {
 	struct smb_charger *chg = container_of(work, struct smb_charger, fb_notify_work);
-	
+
 	LctThermal = 1;
 #if defined(CONFIG_KERNEL_CUSTOM_E7S)
 	if ((lct_backlight_off) && (LctIsInCall == 0) /*&& (hwc_check_india == 1)*/)
 	{
-		if (hwc_check_india == 1) {				
+		if (hwc_check_india == 1) {
 			if (lct_therm_lvl_reserved.intval >= 2)
 				smblib_set_prop_system_temp_level(chg,&lct_therm_india_level);//level 2, 2000mA
 			else
@@ -2564,7 +2564,7 @@ static int thermal_notifier_callback(struct notifier_block *noti, unsigned long 
 	if (ev_data && ev_data->data && chg) {
 		blank = ev_data->data;
 		if (event == FB_EARLY_EVENT_BLANK && *blank == FB_BLANK_UNBLANK) {
-			
+
 			lct_backlight_off = false;
 			schedule_work(&chg->fb_notify_work);
 		}
@@ -2582,7 +2582,7 @@ static int lct_register_powermanger(struct smb_charger *chg)
 #if defined(CONFIG_FB)
 	chg->notifier.notifier_call = thermal_notifier_callback;
 	fb_register_client(&chg->notifier);
-#endif	
+#endif
 
 	return 0;
 }
@@ -2590,7 +2590,7 @@ static int lct_register_powermanger(struct smb_charger *chg)
 static int lct_unregister_powermanger(struct smb_charger *chg)
 {
 #if defined(CONFIG_FB)
-	fb_unregister_client(&chg->notifier);		
+	fb_unregister_client(&chg->notifier);
 #endif
 
 	return 0;
@@ -2725,7 +2725,7 @@ static int smb2_probe(struct platform_device *pdev)
 			if (rc < 0) {
 		        sysfs_remove_file(&chg->dev->kobj,
 						&attrs2[attr_count2].attr);
-			} 
+			}
 		}
 	#endif
 	rc = smb2_determine_initial_status(chip);
@@ -2827,7 +2827,7 @@ static int smb2_remove(struct platform_device *pdev)
 	#ifdef THERMAL_CONFIG_FB
 	unsigned char attr_count2;
 	#endif
-	
+
 	#ifdef CONFIG_CHARGER_RUNIN
 	unsigned char attr_count;
 			for (attr_count = 0; attr_count < ARRAY_SIZE(attrs); attr_count++) {
@@ -2835,7 +2835,7 @@ static int smb2_remove(struct platform_device *pdev)
 							&attrs[attr_count].attr);
 			}
 	#endif
-	
+
 	#ifdef THERMAL_CONFIG_FB
 		for (attr_count2 = 0; attr_count2 < ARRAY_SIZE(attrs2); attr_count2++) {
 			  sysfs_remove_file(&chg->dev->kobj,

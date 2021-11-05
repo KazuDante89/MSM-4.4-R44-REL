@@ -39,9 +39,9 @@ extern struct g_nvt_data g_nvt;
 
 extern int hwc_check_global;
 #ifdef CONFIG_KERNEL_CUSTOM_E7S
-#define LCT_JEITA_CCC_AUTO_ADJUST  1   //adjust jeita cc config (1092 register) according FCC 
+#define LCT_JEITA_CCC_AUTO_ADJUST  1   //adjust jeita cc config (1092 register) according FCC
 #else
-#define LCT_JEITA_CCC_AUTO_ADJUST  0   
+#define LCT_JEITA_CCC_AUTO_ADJUST  0
 #endif
 
 #define smblib_err(chg, fmt, ...)		\
@@ -384,7 +384,7 @@ static int smblib_adjust_jeita_cc_config(struct smb_charger *chg,int val_u)
 	{
 		rc = smblib_set_charge_param(chg,&chg->param.jeita_cc_comp,JEITA_CC_COMP_CFG_IN_UEFI * 1000 );
 		pr_err("smblib_adjust_jeita_cc_config jeita cc has changed ,write it back ,write result = %d\n",rc);
-		
+
 	}
 	else if((val_u < chg->batt_profile_fcc_ua) &&( (chg->batt_profile_fcc_ua - val_u) <= JEITA_CC_COMP_CFG_IN_UEFI * 1000) ) //fcc is lower than 2.5A,but ( chg->batt_profile_fcc_ua - val_u  < JEITA_CC_COMP_CFG_IN_UEFI *1000) , we need decrease jeita cc config
 	{
@@ -398,7 +398,7 @@ static int smblib_adjust_jeita_cc_config(struct smb_charger *chg,int val_u)
 		{
 			pr_err("smblib_adjust_jeita_cc_config jeita cc have decreased \n");
 		}
-		
+
 	}
 	else if((val_u < chg->batt_profile_fcc_ua) &&( (chg->batt_profile_fcc_ua - val_u) > JEITA_CC_COMP_CFG_IN_UEFI * 1000) ) //fcc is lower than  jeita cc config in UEFI set value,we need to set jeita cc comp cfg to 0
 	{
@@ -409,11 +409,11 @@ static int smblib_adjust_jeita_cc_config(struct smb_charger *chg,int val_u)
 	{
 		pr_err("smblib_adjust_jeita_cc_config do nothing \n");
 	}
-	
-		
+
+
 	return rc;
-	
-	
+
+
 }
 #endif
 
@@ -449,7 +449,7 @@ int smblib_set_charge_param(struct smb_charger *chg,
 		smblib_adjust_jeita_cc_config(chg,val_u);
 	}
 	#endif
-	
+
 	smblib_dbg(chg, PR_REGISTER, "%s = %d (0x%02x)\n",
 		   param->name, val_u, val_raw);
 
@@ -2032,9 +2032,9 @@ int smblib_set_prop_system_temp_level(struct smb_charger *chg,
 		return -EINVAL;
 
 	#ifdef THERMAL_CONFIG_FB
-	pr_err("smblib_set_prop_system_temp_level val=%d, chg->system_temp_level=%d, LctThermal=%d, lct_backlight_off= %d, IsInCall=%d, hwc_check_india=%d\n ", 
+	pr_err("smblib_set_prop_system_temp_level val=%d, chg->system_temp_level=%d, LctThermal=%d, lct_backlight_off= %d, IsInCall=%d, hwc_check_india=%d\n ",
 		val->intval,chg->system_temp_level, LctThermal, lct_backlight_off, LctIsInCall, hwc_check_india);
-	
+
 	if (LctThermal == 0) { //from therml-engine always store lvl_sel
 	    #if defined(CONFIG_KERNEL_CUSTOM_D2S) || defined(CONFIG_KERNEL_CUSTOM_F7A)
 		if (val->intval < 6)
@@ -2042,7 +2042,7 @@ int smblib_set_prop_system_temp_level(struct smb_charger *chg,
 		lct_therm_lvl_reserved.intval = val->intval;
 	}
 #if defined(CONFIG_KERNEL_CUSTOM_E7S)
-		if (hwc_check_india == 1) {	
+		if (hwc_check_india == 1) {
 		if ((lct_backlight_off) && (LctIsInCall == 0) && (val->intval > 2)) {//backlight off and not-incall,india force minimum level 2
 		    return 0;
 		}
@@ -2061,7 +2061,7 @@ int smblib_set_prop_system_temp_level(struct smb_charger *chg,
 		return 0;
 	}
 #elif defined(CONFIG_KERNEL_CUSTOM_E7T)
-	if (hwc_check_india == 1) {	
+	if (hwc_check_india == 1) {
 		if ((lct_backlight_off) && (LctIsInCall == 0) && (val->intval > 3)) {//backlight off and not-incall,india force minimum level 2
 		    return 0;
 		}
@@ -2119,7 +2119,7 @@ int smblib_set_prop_system_temp_level(struct smb_charger *chg,
 		vote(chg->pl_disable_votable, THERMAL_DAEMON_VOTER,
 			chg->system_temp_level ? true : false, 0);
 	}
-	
+
 
 	if (chg->system_temp_level == chg->thermal_levels)
 		return vote(chg->chg_disable_votable,
@@ -2130,9 +2130,9 @@ int smblib_set_prop_system_temp_level(struct smb_charger *chg,
 		return vote(chg->fcc_votable, THERMAL_DAEMON_VOTER, false, 0);
 		pr_err("lct smblib_set_prop_system_temp_level 0 false fcc_votable\n");
 	}
-	
+
 	pr_err("lct smblib_set_prop_system_temp_level >0 fcc_votable\n");
-	
+
 	vote(chg->fcc_votable, THERMAL_DAEMON_VOTER, true,
 			chg->thermal_mitigation[chg->system_temp_level]);
 	return 0;
@@ -3654,7 +3654,7 @@ void smblib_usb_plugin_locked(struct smb_charger *chg)
 	bool vbus_rising;
 	struct smb_irq_data *data;
 	struct storm_watch *wdata;
-	
+
 	union power_supply_propval pval = {1, };
 
 	rc = smblib_read(chg, USBIN_BASE + INT_RT_STS_OFFSET, &stat);
@@ -3673,7 +3673,7 @@ void smblib_usb_plugin_locked(struct smb_charger *chg)
 			smblib_err(chg, "Couldn't to enable DPDM rc=%d\n", rc);
 		if (chg->fcc_stepper_mode)
 			vote(chg->fcc_votable, FCC_STEPPER_VOTER, false, 0);
-			
+
 		chg->pl_psy =  power_supply_get_by_name("parallel");
 		if (chg->pl_psy) {
 			power_supply_set_property(chg->pl_psy, POWER_SUPPLY_PROP_INPUT_SUSPEND, &pval);
@@ -4043,7 +4043,7 @@ static void smblib_force_legacy_icl(struct smb_charger *chg, int pst)
 		#elif defined(CONFIG_KERNEL_CUSTOM_D2S) || defined(CONFIG_KERNEL_CUSTOM_F7A)
 		vote(chg->usb_icl_votable, USER_VOTER, false, 0);
 		if (hwc_check_global){
-		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 2300000);
+		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 2900000);
 		}else{
 		vote(chg->usb_icl_votable, LEGACY_UNKNOWN_VOTER, true, 2900000);
 		}
@@ -4670,7 +4670,7 @@ void smblib_usb_typec_change(struct smb_charger *chg)
 		smblib_err(chg, "Couldn't cache USB Type-C status rc=%d\n", rc);
 		return;
 	}
-	
+
 	smblib_handle_typec_cc_state_change(chg);
 
 	if (chg->typec_status[3] & TYPEC_VBUS_ERROR_STATUS_BIT)

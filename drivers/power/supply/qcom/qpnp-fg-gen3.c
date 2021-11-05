@@ -664,7 +664,7 @@ static int fg_get_battery_temp(struct fg_chip *chip, int *val)
 	temp = (temp - 273) * 10;
 		pr_err("LCT TEMP=%d\n",temp);
 	//begin add for low temp detection of battery in 2017.11.02
-#if defined(CONFIG_KERNEL_CUSTOM_E7T)	
+#if defined(CONFIG_KERNEL_CUSTOM_E7T)
 	if (temp < -40){
 		switch (temp){
 		case -50:
@@ -1127,8 +1127,8 @@ static int fg_get_batt_profile(struct fg_chip *chip)
 	}
 
 	if (hwc_check_global){
-		pr_err("sunxing get global set fastchg  2.3A");
-		chip->bp.fastchg_curr_ma = 2300;
+		pr_err("sunxing get global set fastchg  2.9A");
+		chip->bp.fastchg_curr_ma = 2900;
 	}else{
 	rc = of_property_read_u32(profile_node, "qcom,fastchg-current-ma",
 			&chip->bp.fastchg_curr_ma);
@@ -1136,7 +1136,7 @@ static int fg_get_batt_profile(struct fg_chip *chip)
 	if (is_poweroff_charge == true)
 	{
 		if(hwc_check_india == 1)
-			chip->bp.fastchg_curr_ma = 2200;
+			chip->bp.fastchg_curr_ma = 2300;
 		else
 			chip->bp.fastchg_curr_ma = 2300;
 	}
