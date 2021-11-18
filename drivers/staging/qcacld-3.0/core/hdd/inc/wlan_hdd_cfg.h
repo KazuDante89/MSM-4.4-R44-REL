@@ -5232,7 +5232,7 @@ enum hdd_link_speed_rpt_type {
 #define CFG_VHT_ENABLE_RX_MCS_8_9               "gVhtRxMCS"
 #define CFG_VHT_ENABLE_RX_MCS_8_9_MIN           (0)
 #define CFG_VHT_ENABLE_RX_MCS_8_9_MAX           (2)
-#define CFG_VHT_ENABLE_RX_MCS_8_9_DEFAULT       (0)
+#define CFG_VHT_ENABLE_RX_MCS_8_9_DEFAULT       (2)
 
 /*
  * <ini>
@@ -5258,7 +5258,7 @@ enum hdd_link_speed_rpt_type {
 #define CFG_VHT_ENABLE_TX_MCS_8_9               "gVhtTxMCS"
 #define CFG_VHT_ENABLE_TX_MCS_8_9_MIN           (0)
 #define CFG_VHT_ENABLE_TX_MCS_8_9_MAX           (2)
-#define CFG_VHT_ENABLE_TX_MCS_8_9_DEFAULT       (0)
+#define CFG_VHT_ENABLE_TX_MCS_8_9_DEFAULT       (2)
 
 /*
  * <ini>
@@ -5284,7 +5284,7 @@ enum hdd_link_speed_rpt_type {
 #define CFG_VHT_ENABLE_RX_MCS2x2_8_9               "gVhtRxMCS2x2"
 #define CFG_VHT_ENABLE_RX_MCS2x2_8_9_MIN           (0)
 #define CFG_VHT_ENABLE_RX_MCS2x2_8_9_MAX           (2)
-#define CFG_VHT_ENABLE_RX_MCS2x2_8_9_DEFAULT       (0)
+#define CFG_VHT_ENABLE_RX_MCS2x2_8_9_DEFAULT       (2)
 
 /*
  * <ini>
@@ -5310,7 +5310,7 @@ enum hdd_link_speed_rpt_type {
 #define CFG_VHT_ENABLE_TX_MCS2x2_8_9               "gVhtTxMCS2x2"
 #define CFG_VHT_ENABLE_TX_MCS2x2_8_9_MIN           (0)
 #define CFG_VHT_ENABLE_TX_MCS2x2_8_9_MAX           (2)
-#define CFG_VHT_ENABLE_TX_MCS2x2_8_9_DEFAULT       (0)
+#define CFG_VHT_ENABLE_TX_MCS2x2_8_9_DEFAULT       (2)
 
 /*
  * <ini>
@@ -6749,7 +6749,7 @@ enum hdd_link_speed_rpt_type {
 #define CFG_MAX_HT_MCS_FOR_TX_DATA          "gMaxHTMCSForTxData"
 #define CFG_MAX_HT_MCS_FOR_TX_DATA_MIN      (WNI_CFG_MAX_HT_MCS_TX_DATA_STAMIN)
 #define CFG_MAX_HT_MCS_FOR_TX_DATA_MAX      (WNI_CFG_MAX_HT_MCS_TX_DATA_STAMAX)
-#define CFG_MAX_HT_MCS_FOR_TX_DATA_DEFAULT  (WNI_CFG_MAX_HT_MCS_TX_DATA_STADEF)
+#define CFG_MAX_HT_MCS_FOR_TX_DATA_DEFAULT  (WNI_CFG_MAX_HT_MCS_TX_DATA_STAMAX)
 
 /*
  * <ini>
