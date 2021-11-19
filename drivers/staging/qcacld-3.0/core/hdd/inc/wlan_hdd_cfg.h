@@ -6262,7 +6262,7 @@ enum hdd_link_speed_rpt_type {
 #define CFG_VC_MODE_BITMAP                  "gConfigVCmode"
 #define CFG_VC_MODE_BITMAP_MIN              (0x00000000)
 #define CFG_VC_MODE_BITMAP_MAX              (0x0fffffff)
-#define CFG_VC_MODE_BITMAP_DEFAULT          (0x00000005)
+#define CFG_VC_MODE_BITMAP_DEFAULT          (0x00000011)
 
 /*
  * <ini>
@@ -8399,7 +8399,7 @@ enum hdd_link_speed_rpt_type {
  */
 
 #define CFG_INITIAL_SCAN_NO_DFS_CHNL_NAME         "gInitialScanNoDFSChnl"
-#define CFG_INITIAL_SCAN_NO_DFS_CHNL_DEFAULT      (0)
+#define CFG_INITIAL_SCAN_NO_DFS_CHNL_DEFAULT      (1)
 #define CFG_INITIAL_SCAN_NO_DFS_CHNL_MIN          (0)
 #define CFG_INITIAL_SCAN_NO_DFS_CHNL_MAX          (1)
 
@@ -13475,7 +13475,7 @@ enum hw_filter_mode {
  */
 
 #define CFG_IS_SAE_ENABLED_NAME    "sae_enabled"
-#define CFG_IS_SAE_ENABLED_DEFAULT (1)
+#define CFG_IS_SAE_ENABLED_DEFAULT (0)
 #define CFG_IS_SAE_ENABLED_MIN     (0)
 #define CFG_IS_SAE_ENABLED_MAX     (1)
 
