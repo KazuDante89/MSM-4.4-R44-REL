@@ -423,11 +423,11 @@ static ssize_t double_tap_store(struct kobject *kobj,
                 size_t count)
 {
     int rc, val;
-    
+
     rc = kstrtoint(buf, 10, &val);
     if (rc)
     return -EINVAL;
-    
+
     synaptics_gesture_enable_flag = !!val;
     return count;
 }
@@ -1927,7 +1927,7 @@ static int syna_tcm_enable_irq(struct syna_tcm_hcd *tcm_hcd, bool en, bool ns)
 
 		if (irq_freed) {
 			retval = request_threaded_irq(tcm_hcd->irq, NULL,
-					syna_tcm_isr, bdata->irq_flags,
+					syna_tcm_isr, bdata->irq_flags | IRQF_PERF_CRITICAL,
 					PLATFORM_DRIVER_NAME, tcm_hcd);
 			if (retval < 0) {
 				LOGE(tcm_hcd->pdev->dev.parent,
@@ -3503,7 +3503,7 @@ static int syna_tcm_probe(struct platform_device *pdev)
 				"Failed to configure GPIO's\n");
 		goto err_config_gpio;
 	}
-    
+
 #ifdef CONFIG_TOUCHSCREEN_COMMON
     retval = tp_common_set_double_tap_ops(&double_tap_ops);
     if (retval < 0) {
