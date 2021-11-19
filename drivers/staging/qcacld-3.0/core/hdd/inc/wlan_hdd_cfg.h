@@ -6262,7 +6262,7 @@ enum hdd_link_speed_rpt_type {
 #define CFG_VC_MODE_BITMAP                  "gConfigVCmode"
 #define CFG_VC_MODE_BITMAP_MIN              (0x00000000)
 #define CFG_VC_MODE_BITMAP_MAX              (0x0fffffff)
-#define CFG_VC_MODE_BITMAP_DEFAULT          (0x00000011)
+#define CFG_VC_MODE_BITMAP_DEFAULT          (0x00000005)
 
 /*
  * <ini>
@@ -8399,7 +8399,7 @@ enum hdd_link_speed_rpt_type {
  */
 
 #define CFG_INITIAL_SCAN_NO_DFS_CHNL_NAME         "gInitialScanNoDFSChnl"
-#define CFG_INITIAL_SCAN_NO_DFS_CHNL_DEFAULT      (1)
+#define CFG_INITIAL_SCAN_NO_DFS_CHNL_DEFAULT      (0)
 #define CFG_INITIAL_SCAN_NO_DFS_CHNL_MIN          (0)
 #define CFG_INITIAL_SCAN_NO_DFS_CHNL_MAX          (1)
 
@@ -10832,6 +10832,12 @@ enum restart_beaconing_on_ch_avoid_rule {
 #define CFG_CRASH_FW_TIMEOUT_DISABLE    (0)
 #define CFG_CRASH_FW_TIMEOUT_ENABLE     (1)
 #define CFG_CRASH_FW_TIMEOUT_DEFAULT    (1)
+
+/* Hold wakelock for unicast RX packets for the specified duration  */
+#define CFG_RX_WAKELOCK_TIMEOUT_NAME     "rx_wakelock_timeout"
+#define CFG_RX_WAKELOCK_TIMEOUT_DEFAULT  (50)
+#define CFG_RX_WAKELOCK_TIMEOUT_MIN      (0)
+#define CFG_RX_WAKELOCK_TIMEOUT_MAX      (100)
 
 /*
  * <ini>
@@ -13469,7 +13475,7 @@ enum hw_filter_mode {
  */
 
 #define CFG_IS_SAE_ENABLED_NAME    "sae_enabled"
-#define CFG_IS_SAE_ENABLED_DEFAULT (0)
+#define CFG_IS_SAE_ENABLED_DEFAULT (1)
 #define CFG_IS_SAE_ENABLED_MIN     (0)
 #define CFG_IS_SAE_ENABLED_MAX     (1)
 
@@ -16360,6 +16366,7 @@ struct hdd_config {
 	/* beacon count before channel switch */
 	uint8_t sap_chanswitch_beacon_cnt;
 	uint8_t sap_chanswitch_mode;
+	uint32_t rx_wakelock_timeout;
 #ifdef WLAN_FEATURE_WOW_PULSE
 	bool wow_pulse_support;
 	uint8_t wow_pulse_pin;
