@@ -415,7 +415,7 @@ struct sock {
 	int			sk_gso_type;
 	unsigned int		sk_gso_max_size;
 	gfp_t			sk_allocation;
-	__u32			sk_txhash;
+	//__u32			sk_txhash;
 
 	kmemcheck_bitfield_begin(flags);
 	unsigned int		sk_shutdown  : 2,
@@ -427,13 +427,13 @@ struct sock {
 #define SK_PROTOCOL_MAX U8_MAX
 	kmemcheck_bitfield_end(flags);
 	int			sk_wmem_queued;
-	gfp_t			sk_allocation;
-	u32			sk_pacing_rate; /* bytes per second */
-	u32			sk_max_pacing_rate;
-	netdev_features_t	sk_route_caps;
-	netdev_features_t	sk_route_nocaps;
-	int			sk_gso_type;
-	unsigned int		sk_gso_max_size;
+	//gfp_t			sk_allocation;
+	//u32			sk_pacing_rate; /* bytes per second */
+	//u32			sk_max_pacing_rate;
+	//netdev_features_t	sk_route_caps;
+	//netdev_features_t	sk_route_nocaps;
+	//int			sk_gso_type;
+	//unsigned int		sk_gso_max_size;
 	u16			sk_gso_max_segs;
 	int			sk_rcvlowat;
 	u8			sk_pacing_shift;
@@ -445,15 +445,15 @@ struct sock {
 				sk_err_soft;
 	u32			sk_ack_backlog;
 	u32			sk_max_ack_backlog;
-	__u32			sk_priority;
+	//__u32			sk_priority;
 	spinlock_t		sk_peer_lock;
-	__u32			sk_mark;
+	//__u32			sk_mark;
 	struct pid		*sk_peer_pid;
 	const struct cred	*sk_peer_cred;
 
 	long			sk_rcvtimeo;
-	long			sk_sndtimeo;
-	struct timer_list	sk_timer;
+	//long			sk_sndtimeo;
+	//struct timer_list	sk_timer;
 	ktime_t			sk_stamp;
 #if BITS_PER_LONG==32
 	seqlock_t		sk_stamp_seq;
@@ -462,10 +462,10 @@ struct sock {
 	u32			sk_tskey;
 	struct socket		*sk_socket;
 	void			*sk_user_data;
-	struct page_frag	sk_frag;
+	//struct page_frag	sk_frag;
 	struct sk_buff		*sk_send_head;
-	__s32			sk_peek_off;
-	int			sk_write_pending;
+	//__s32			sk_peek_off;
+	//int			sk_write_pending;
 #ifdef CONFIG_SECURITY
 	void			*sk_security;
 #endif
