@@ -1200,7 +1200,7 @@
 
 	cpubw: qcom,cpubw {
 		compatible = "qcom,devbw";
-		governor = "performance";
+		governor = "bw_hwmon";
 		qcom,src-dst-ports = <1 512>;
 		qcom,active-only;
 		qcom,bw-tbl =
@@ -1231,7 +1231,7 @@
 
 	mincpubw: qcom,mincpubw {
 		compatible = "qcom,devbw";
-		governor = "powersave";
+		governor = "cpufreq";
 		qcom,src-dst-ports = <1 512>;
 		qcom,active-only;
 		qcom,bw-tbl =
@@ -1299,7 +1299,7 @@
 		qcom,core-dev-table =
 			< 902400 762 >,
 			< 1401600 2086 >,
-			< 1747200 3879 >;
+			< 1843200 3879 >;
 	};
 
 	devfreq_memlat_4: qcom,arm-memlat-mon-4 {
@@ -1319,7 +1319,7 @@
 			cpu-to-dev-map-0 =
 				< 633600 762 >,
 				< 1401600 1571 >,
-				< 1747200 2929 >;
+				< 1843200 2929 >;
 			cpu-to-dev-map-4 =
 				< 1113600 762 >,
 				< 1401600 2086 >,
@@ -1468,16 +1468,16 @@
 			< 1113600 >,
 			< 1401600 >,
 			< 1536000 >,
-			< 1747200 >;
-		/*< 1843200 >;*/
+			< 1747200 >,
+		  < 1843200 >;
 
 		qcom,cpufreq-table-4 =
 			< 1113600 >,
 			< 1401600 >,
 			< 1747200 >,
 			< 1958400 >,
-			< 2150400 >,
-			< 2208000 >;
+			< 2150400 >;
+		/*< 2208000 >;*/
 	};
 
 	sdhc_1: sdhci@c0c4000 {
