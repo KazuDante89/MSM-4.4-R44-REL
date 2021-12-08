@@ -34,7 +34,7 @@
 
 	chosen {
 		stdout-path = "serial0";
-		bootargs = "rcupdate.rcu_expedited=1";
+		bootargs = "kpti=off";
 	};
 
 	psci {
@@ -298,7 +298,6 @@
 				1401600	146
 				1536000	158
 				1747200	228
-				1843200	285
 			>;
 			idle-cost-data = <
 				20 16 10 8
@@ -327,7 +326,6 @@
 				1401600	9
 				1536000	9
 				1747200	11
-				1843200	13
 			>;
 			idle-cost-data = <
 				4 3 2 1
@@ -1196,7 +1194,7 @@
 
 	cpubw: qcom,cpubw {
 		compatible = "qcom,devbw";
-		governor = "performance";
+		governor = "bw_hwmon";
 		qcom,src-dst-ports = <1 512>;
 		qcom,active-only;
 		qcom,bw-tbl =
@@ -1227,7 +1225,7 @@
 
 	mincpubw: qcom,mincpubw {
 		compatible = "qcom,devbw";
-		governor = "powersave";
+		governor = "cpufreq";
 		qcom,src-dst-ports = <1 512>;
 		qcom,active-only;
 		qcom,bw-tbl =
@@ -1295,7 +1293,7 @@
 		qcom,core-dev-table =
 			< 902400 762 >,
 			< 1401600 2086 >,
-			< 1881600 3879 >;
+			< 1747200 3879 >;
 	};
 
 	devfreq_memlat_4: qcom,arm-memlat-mon-4 {
@@ -1306,7 +1304,7 @@
 			< 1113600 762 >,
 			< 1401600 3879 >,
 			< 2150400 5931 >,
-			< 2457600 6881 >;
+			< 2208000 6881 >;
 	};
 
 	devfreq_cpufreq: devfreq-cpufreq {
@@ -1315,13 +1313,13 @@
 			cpu-to-dev-map-0 =
 				< 633600 762 >,
 				< 1401600 1571 >,
-				< 1881600 2929 >;
+				< 1747200 2929 >;
 			cpu-to-dev-map-4 =
 				< 1113600 762 >,
 				< 1401600 2086 >,
 				< 1747200 2929 >,
 				< 2150400 3879 >,
-				< 2457600 6881 >;
+				< 2208000 6881 >;
 		};
 	};
 
@@ -1464,8 +1462,7 @@
 			< 1113600 >,
 			< 1401600 >,
 			< 1536000 >,
-			< 1747200 >,
-			< 1843200 >;
+			< 1747200 >;
 
 		qcom,cpufreq-table-4 =
 			< 1113600 >,
