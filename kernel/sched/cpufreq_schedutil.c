@@ -766,8 +766,8 @@ static int sugov_init(struct cpufreq_policy *policy)
 	} else {
 		unsigned int lat;
 
-                tunables->up_rate_limit_us = LATENCY_MULTIPLIER / 2;
-                tunables->down_rate_limit_us = LATENCY_MULTIPLIER * 20;
+                tunables->up_rate_limit_us = LATENCY_MULTIPLIER * 20;
+                tunables->down_rate_limit_us = LATENCY_MULTIPLIER / 2;
 		lat = policy->cpuinfo.transition_latency / NSEC_PER_USEC;
 		if (lat) {
                         tunables->up_rate_limit_us *= lat;
@@ -775,7 +775,7 @@ static int sugov_init(struct cpufreq_policy *policy)
                 }
 	}
 
-	tunables->iowait_boost_enable = 1;
+	tunables->iowait_boost_enable = false;
 
 	policy->governor_data = sg_policy;
 	sg_policy->tunables = tunables;
@@ -938,4 +938,4 @@ static int __init sugov_register(void)
 {
 	return cpufreq_register_governor(&cpufreq_gov_schedutil);
 }
-fs_initcall(sugov_register);
+core_initcall(sugov_register);
