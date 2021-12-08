@@ -207,7 +207,7 @@
 		qcom,mdss-dsi-tx-eot-append;
 		qcom,mdss-dsi-post-init-delay = <1>;
 
-		qcom,panel-allow-phy-poweroff;
+    qcom,ulps-enabled;
     qcom,panel-allow-phy-poweroff;
 		qcom,mdss-dsi-panel-status-command = [06 01 00 01 05 00 01 0A];
 		qcom,mdss-dsi-panel-status-command-state = "dsi_hs_mode";
